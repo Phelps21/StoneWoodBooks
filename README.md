@@ -1,8 +1,8 @@
 # Collaborative work for Database Management Systems.
-\nProject code name: StoneWoodBooks
+<br>Project code name: StoneWoodBooks
 
-Programmers: Devin Laterza, Leeann Warren, Weseley Phelps
-\nInput:
-\nOutput:
-\nPurpose:
-\nSample: [probably not needed, but filling out template for now]
+<br>Programmers: Devin Laterza, Leeann Warren, Weseley Phelps
+<br>Input:
+<br>Output:
+<br>Purpose:
+<br>Sample: [probably not needed, but filling out template for now]
