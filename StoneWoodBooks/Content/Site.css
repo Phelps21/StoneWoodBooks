@@ -50,3 +50,8 @@ p
 {
     font-family:'Microsoft JhengHei UI'
 }
+
+.btn, .btn-primary, btn-lg, btn-primary:active
+{
+    background-color: #c0c1b0 !important;
+}
