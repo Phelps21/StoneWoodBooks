@@ -13,51 +13,87 @@ namespace StoneWoodBooks
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             
         }
 
-        public static bool IsValidEmail(string email)
+        public bool isValid()
         {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
+            
+            // Test if the email address is a valid one within 200 ms
             try
             {
-                // Normalize the domain
-                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-                // Examines the domain part of the email and normalizes it.
-                string DomainMapper(Match match)
+                if (!Regex.IsMatch(txtEmail.Text, @"(.*\D+.*)@(.*\D+.*)\.(\D+)", RegexOptions.None,
+                    TimeSpan.FromMilliseconds(200)) || Regex.IsMatch(txtEmail.Text, @"[\s_]"))
                 {
-                    // Use IdnMapping class to convert Unicode domain names.
-                    var idn = new IdnMapping();
-
-                    // Pull out and process domain name (throws ArgumentException on invalid)
-                    string domainName = idn.GetAscii(match.Groups[2].Value);
-
-                    return match.Groups[1].Value + domainName;
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('You have inserted an invalid email address')", true);
+                    return false;
                 }
-            }
-            catch (RegexMatchTimeoutException e)
-            {
-                return false;
-            }
-            catch (ArgumentException e)
-            {
-                return false;
+                
             }
 
-            try
-            {
-                return Regex.IsMatch(email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
             catch (RegexMatchTimeoutException)
             {
                 return false;
             }
+            
+            
+            // Test if the phone is a valid phone number within 200 ms
+            try
+            {
+                if (!Regex.IsMatch(txtPhone.Text, @"^([0-9]{10})$", RegexOptions.None,
+                    TimeSpan.FromMilliseconds(200)))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", 
+                        "alert('You have inserted an invalid phone number')", true);
+                    return false;
+                }
+
+            }
+
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // This case allows changes
+            if (txtPhone.Enabled == false)
+            {
+                btnEditInfo.Text = "Submit Change";
+                txtEmail.Enabled = true;
+                txtPhone.Enabled = true;
+                txtStreet.Enabled = true;
+                txtCity.Enabled = true;
+                txtZip.Enabled = true;
+            }
+
+            // This checks if the email and phone is valid
+            else if (!isValid()) { } // Do nothing
+
+            // This case submits all changes
+            else
+            {
+                txtEmail.Enabled = false;
+                txtPhone.Enabled = false;
+                txtStreet.Enabled = false;
+                txtCity.Enabled = false;
+                txtZip.Enabled = false;
+
+                btnEditInfo.Text = "Edit Info";
+
+            }
+        }
+
+        protected void btnPW_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UpdatePW.aspx");
         }
     }
+
 }
