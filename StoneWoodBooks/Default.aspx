@@ -4,7 +4,7 @@
     <div id="jumbotron">
         <div class="jumbotron">
             <h1>Stonewood Books</h1>
-            <p class="lead">The leading bookstore on the web</p>
+            <p class="lead">The web's most exclusive bookstore.</p>
             <p><a runat="server" href="~/Login" class="btn btn-primary btn-lg">Login &raquo;</a></p>
         </div>
     </div>

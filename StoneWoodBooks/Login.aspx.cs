@@ -52,5 +52,10 @@ namespace StoneWoodBooks
                 Response.Write("Error: incorrect username or password!");
             }*/
         }
+
+        protected void btnCreateAccount_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateAccount.aspx");
+        }
     }
 }
