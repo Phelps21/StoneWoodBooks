@@ -37,8 +37,25 @@ namespace StoneWoodBooks
             {
                 return false;
             }
-            
-            
+
+            // Test if the alt email address is a valid one within 200 ms
+            try
+            {
+                if (!Regex.IsMatch(txtAltEmail.Text, @"(.*\D+.*)@(.*\D+.*)\.(\D+)", RegexOptions.None,
+                    TimeSpan.FromMilliseconds(200)) || Regex.IsMatch(txtAltEmail.Text, @"[\s_]"))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('You have inserted an invalid email address')", true);
+                    return false;
+                }
+
+            }
+
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+
             // Test if the phone is a valid phone number within 200 ms
             try
             {
@@ -67,6 +84,7 @@ namespace StoneWoodBooks
             {
                 btnEditInfo.Text = "Submit Change";
                 txtEmail.Enabled = true;
+                txtAltEmail.Enabled = true;
                 txtPhone.Enabled = true;
                 txtStreet.Enabled = true;
                 txtCity.Enabled = true;
@@ -80,6 +98,7 @@ namespace StoneWoodBooks
             else
             {
                 txtEmail.Enabled = false;
+                txtAltEmail.Enabled = false;
                 txtPhone.Enabled = false;
                 txtStreet.Enabled = false;
                 txtCity.Enabled = false;
