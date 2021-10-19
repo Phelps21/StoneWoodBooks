@@ -40,19 +40,20 @@ textarea {
     font-size: 10px;
     background-color: #ff6a00;
 }
+
 .jumbotron h1 {
     font-size: 55px;
+
     text-shadow: 1px 1px white;
 }
 p
 {
     font-family:'Microsoft JhengHei UI'
-<<<<<<< Updated upstream
-=======
+
 }
 
 .btn, .btn-primary, btn-lg, btn-primary:active {
     background-color: #0073e6 !important;
     color: white;
->>>>>>> Stashed changes
+
 }
