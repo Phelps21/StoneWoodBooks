@@ -23,7 +23,7 @@
            Alternate Email:
         </div>
         <div class="col-md-9">
-            <asp:TextBox ID="txtAlternateEmail" runat="server" CssClass="form-control" required ="true"></asp:TextBox>
+            <asp:TextBox ID="txtAlternateEmail" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
         <br />
         <br />

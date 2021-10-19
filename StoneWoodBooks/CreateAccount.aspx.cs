@@ -76,7 +76,7 @@ namespace StoneWoodBooks
             // This checks if the email and phone is valid
             else if (!isValid()) 
             {
-                Response.Redirect("Default.aspx");
+                
             } // Do nothing
 
             // This case submits all changes
@@ -87,7 +87,7 @@ namespace StoneWoodBooks
                 txtUserStreetAddress.Enabled = false;
                 txtUserCity.Enabled = false;
                 txtUserZIP.Enabled = false;
-
+                Response.Redirect("Default.aspx");
                 //btnEditInfo.Text = "Edit Info";
 
             }
