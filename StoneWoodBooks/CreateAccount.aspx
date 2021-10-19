@@ -44,6 +44,14 @@
         <br />
         <br />
         <div class="col-md-3">
+            Phone:
+        </div>
+        <div class="col-md-9">
+            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-3">
             Street Address:
         </div>
         <div class="col-md-9">
@@ -63,7 +71,7 @@
             State:
         </div>
         <div class="col-md-9">
-            <asp:DropDownList ID="ddlUserState" runat="server" CssClass="form-control" required ="true"></asp:DropDownList>
+            <asp:DropDownList ID="ddlUserState" runat="server" CssClass="form-control" ></asp:DropDownList>
         </div>
         <br />
         <br />

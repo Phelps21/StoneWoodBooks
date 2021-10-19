@@ -27,7 +27,7 @@ namespace StoneWoodBooks
                     TimeSpan.FromMilliseconds(200)) || Regex.IsMatch(txtEmail.Text, @"[\s_]"))
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('You have inserted an invalid email address')", true);
+                        "alert('You have entered an invalid email address')", true);
                     return false;
                 }
                 
