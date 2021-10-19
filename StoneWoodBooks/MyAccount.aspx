@@ -12,6 +12,13 @@
         </div>
 
         <div class ="col-md-3">
+        <asp:Label ID="lblAltEmail" runat="server" Text="Altername Email"></asp:Label>
+        </div>
+        <div class="col-md-9">
+        <asp:TextBox ID="txtAltEmail" runat="server" CssClass="form-control" Enabled="False" required ="false"></asp:TextBox>
+        </div>
+
+        <div class ="col-md-3">
         <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
         </div>
         <div class="col-md-9">
