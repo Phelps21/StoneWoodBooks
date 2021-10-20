@@ -9,17 +9,16 @@ using System.Globalization;
 
 namespace StoneWoodBooks
 {
-    public partial class MyAccount : System.Web.UI.Page
+    public partial class CreateAccount : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            
         }
 
         public bool isValid()
-        { // hi
-            
+        {
+
             // Test if the email address is a valid one within 200 ms
             try
             {
@@ -30,24 +29,6 @@ namespace StoneWoodBooks
                         "alert('You have entered an invalid email address')", true);
                     return false;
                 }
-                
-            }
-
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
-
-            // Test if the alt email address is a valid one within 200 ms
-            try
-            {
-                if (!Regex.IsMatch(txtAltEmail.Text, @"(.*\D+.*)@(.*\D+.*)\.(\D+)", RegexOptions.None,
-                    TimeSpan.FromMilliseconds(200)) || Regex.IsMatch(txtAltEmail.Text, @"[\s_]"))
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('You have inserted an invalid email address')", true);
-                    return false;
-                }
 
             }
 
@@ -55,6 +36,7 @@ namespace StoneWoodBooks
             {
                 return false;
             }
+
 
             // Test if the phone is a valid phone number within 200 ms
             try
@@ -62,7 +44,7 @@ namespace StoneWoodBooks
                 if (!Regex.IsMatch(txtPhone.Text, @"^([0-9]{10})$", RegexOptions.None,
                     TimeSpan.FromMilliseconds(200)))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", 
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('You have inserted an invalid phone number')", true);
                     return false;
                 }
@@ -77,42 +59,39 @@ namespace StoneWoodBooks
             return true;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnCreateNewAccount_Click(object sender, EventArgs e)
         {
-            // This case allows changes
+            //Create SQL queries to check if account can be created
+            //iff account is created, redirect to homepage
             if (txtPhone.Enabled == false)
             {
-                btnEditInfo.Text = "Submit Change";
+                //btnEditInfo.Text = "Submit Change";
                 txtEmail.Enabled = true;
-                txtAltEmail.Enabled = true;
                 txtPhone.Enabled = true;
-                txtStreet.Enabled = true;
-                txtCity.Enabled = true;
-                txtZip.Enabled = true;
+                txtUserStreetAddress.Enabled = true;
+                txtUserCity.Enabled = true;
+                txtUserZIP.Enabled = true;
             }
 
             // This checks if the email and phone is valid
-            else if (!isValid()) { } // Do nothing
+            else if (!isValid()) 
+            {
+                
+            } // Do nothing
 
             // This case submits all changes
             else
             {
                 txtEmail.Enabled = false;
-                txtAltEmail.Enabled = false;
                 txtPhone.Enabled = false;
-                txtStreet.Enabled = false;
-                txtCity.Enabled = false;
-                txtZip.Enabled = false;
-
-                btnEditInfo.Text = "Edit Info";
+                txtUserStreetAddress.Enabled = false;
+                txtUserCity.Enabled = false;
+                txtUserZIP.Enabled = false;
+                Response.Redirect("Default.aspx");
+                //btnEditInfo.Text = "Edit Info";
 
             }
-        }
-
-        protected void btnPW_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("UpdatePW.aspx");
+            
         }
     }
-
 }
