@@ -3,11 +3,11 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div id="jumbotron">
 
-        <div class="jumbotron" style ="border-radius: 15px">
+        <div class="jumbotron" style="border-radius: 15px;">
 
             <h1>Stonewood Books</h1>
             <p class="lead">The web's most exclusive bookstore.</p>
-            <p><a runat="server" href="~/Login" class="btn btn-primary btn-lg">Login &raquo;</a></p>
+            <p><a runat="server" href="~/Books" class="btn btn-primary btn-lg">Browse &raquo;</a></p>
         </div>
     </div>
     

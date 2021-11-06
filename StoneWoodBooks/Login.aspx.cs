@@ -57,5 +57,10 @@ namespace StoneWoodBooks
         {
             Response.Redirect("CreateAccount.aspx");
         }
+
+        protected void btnAdminLogin_Click(object sender, EventArgs e)
+        {
+            //this method will query the admin table for login validation
+        }
     }
 }
