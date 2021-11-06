@@ -11,6 +11,8 @@
         <br />
         <asp:Button ID="btnSubmitLogin" runat="server" CssClass="btn active" Text="Submit" OnClick="btnSubmitLogin_Click"></asp:Button>
         <asp:Button ID="btnCreateAccount" runat="server" CssClass="btn active" Text="Create new account" OnClick="btnCreateAccount_Click"></asp:Button>
-
+        <br />
+        <br />
+        <asp:Button ID="btnAdminLogin" runat="server" CssClass="btn active" Text="Admin" OnClick="btnAdminLogin_Click"></asp:Button>
     </div>
 </asp:Content>
