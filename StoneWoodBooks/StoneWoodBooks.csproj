@@ -133,6 +133,7 @@
     <Content Include="Images\books.jpg" />
     <Content Include="Images\books_resized.jpg" />
     <Content Include="Login.Master" />
+    <Content Include="MyCart.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="MyAccount.aspx" />
@@ -261,6 +262,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MyCart.aspx.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyCart.aspx.designer.cs">
+      <DependentUpon>MyCart.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
