@@ -16,6 +16,7 @@ namespace StoneWoodBooks
 
         }
 
+        //TODO: add regex and rules for username, password
         public bool isValid()
         {
 

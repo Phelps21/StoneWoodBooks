@@ -14,7 +14,7 @@
     </asp:Table>
     <br />
     <br />
-    <h3>Customer Phone</h3>
+    <h3>Customer Phone Table</h3>
     <asp:Table ID="TblCustomerPhoneAdmin" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
             <asp:TableHeaderCell>UserName</asp:TableHeaderCell>
@@ -23,7 +23,7 @@
     </asp:Table>
     <br />
     <br />
-    <h3>Customer Email</h3>
+    <h3>Customer Email Table</h3>
     <asp:Table ID="tblCustomerEmailAdmin" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
             <asp:TableHeaderCell>UserName</asp:TableHeaderCell>
@@ -32,7 +32,7 @@
     </asp:Table>
     <br />
     <br />
-    <h3>Customer Address</h3>
+    <h3>Customer Address Table</h3>
     <asp:Table ID="tblCustomerAddressAdmin" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
             <asp:TableHeaderCell>UserName</asp:TableHeaderCell>
