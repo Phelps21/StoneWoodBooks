@@ -12,6 +12,6 @@
             <asp:TableHeaderCell>AddToCart?</asp:TableHeaderCell>
         </asp:TableHeaderRow>
         <!--Add text box for queries-->
-        <asp:textbox ID="txtBookSearch" runat="server" CssClass="textInput"></asp:TextBox>
+        <asp:Textbox ID="txtBookSearch" runat="server" CssClass="textInput"></asp:Textbox>
     </asp:Table>
 </asp:Content>
