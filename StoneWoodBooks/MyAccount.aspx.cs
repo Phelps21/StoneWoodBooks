@@ -18,7 +18,7 @@ namespace StoneWoodBooks
         }
 
         public bool isValid()
-        { // hi
+        { 
             
             // Test if the email address is a valid one within 200 ms
             try

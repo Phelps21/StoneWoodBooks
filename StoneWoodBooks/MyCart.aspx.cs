@@ -9,7 +9,7 @@ using System.Web.Configuration;
 
 namespace StoneWoodBooks
 {
-    public partial class Books : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +23,11 @@ namespace StoneWoodBooks
             cmd.CommandText = "SELECT Books.Title, Author.LastName, Books.Price, " +
                 "BookCategories.CategoryDescription, Book.ISBN FROM Books, Author, BookCategories WHERE " +
                 "Author.AID = BookAuthored.AID AND Books.ISBN = BookAuthored.ISBN AND Books.ISBN = " +
-                "Books_BookCategories.ISBN AND BookCategories.CategoryCode = Books_BookCategories.CategoryCode";
+                "Books_BookCategories.ISBN AND BookCategories.CategoryCode = Books_BookCategories.CategoryCode" +
+                "AND OrderItem.OrderID = null AND ";
+
+            throw new Exception("Find out how to incorporate customers here");
+
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
@@ -59,10 +63,10 @@ namespace StoneWoodBooks
                     tc.Text = reader["ISBN"].ToString();
                     tr.Cells.Add(tc);
 
-                    Button addBtn = new Button();
-                    addBtn.Text = "+";
-                    addBtn.Click += (Sender, E) => AddBtn_Click(sender, e, row);
-                    tr.Cells[5].Controls.Add(addBtn);
+                    Button btnRemove = new Button();
+                    btnRemove.Text = "+";
+                    btnRemove.Click += btnRemove_Click;
+                    tr.Cells[5].Controls.Add(btnRemove);
 
                     tblBooks.Rows.Add(tr);
                     row++;
@@ -71,10 +75,8 @@ namespace StoneWoodBooks
             conn.Close();
         }
 
-        void AddBtn_Click(Object sender, EventArgs e, int row)
+        protected void ConfirmOrder(object sender, EventArgs e)
         {
-            String isbn = tblBooks.Rows[row].Cells[4].Text;
-
             // Make a new SQL connection and Insert the book into
             // 
             SqlConnection conn = new SqlConnection();
@@ -82,15 +84,40 @@ namespace StoneWoodBooks
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN)" +
-                "Values ((Select Price From Books Where ISBN = " + isbn + ")" +
-                ", " + isbn + ");";
+            
+            cmd.CommandText = "Insert into Orders(OrderDate, CustomerID)" +
+                "Values (" + DateTime.Now + ", " +  + "');";  // I need to figure out how to get the customerID
+
+            cmd.ExecuteReader();
+
+            double total = 0;
+            foreach (TableRow tr in tblBooks.Rows)
+            {
+                cmd.CommandText = "Insert into OrderItem(OrderID)" +
+                "Values (Select MAX(OrderID) From Orders Where Orders.CutomerID = '" +  + "')" +
+                "Where ItemNumber = (Select Max(ItemNumber) From OrderItem Where OrderItem.ISBN = " + tr.Cells[4].Text +
+                "And OrderID = null);";
+                cmd.ExecuteReader();
+
+                total += double.Parse(tr.Cells[2].Text);
+            }
+
+            cmd.CommandText = "Insert into Orders(OrderValue)" +
+                "Values (" + total + ") Where CustomerID = ";
+
+
+
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
             conn.Open();
             cmd.ExecuteReader();
             conn.Close();
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
