@@ -9,7 +9,7 @@ using System.Web.Configuration;
 
 namespace StoneWoodBooks
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class MyCart : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -68,7 +68,7 @@ namespace StoneWoodBooks
                     btnRemove.Click += btnRemove_Click;
                     tr.Cells[5].Controls.Add(btnRemove);
 
-                    tblBooks.Rows.Add(tr);
+                    //tblBooks.Rows.Add(tr);
                     row++;
                 }
             }
@@ -86,21 +86,21 @@ namespace StoneWoodBooks
 
             
             cmd.CommandText = "Insert into Orders(OrderDate, CustomerID)" +
-                "Values (" + DateTime.Now + ", " +  + "');";  // I need to figure out how to get the customerID
+                //"Values (" + DateTime.Now + ", " +  + "');";  // I need to figure out how to get the customerID
 
             cmd.ExecuteReader();
 
             double total = 0;
-            foreach (TableRow tr in tblBooks.Rows)
+            /*foreach (TableRow tr in tblBooks.Rows)
             {
                 cmd.CommandText = "Insert into OrderItem(OrderID)" +
-                "Values (Select MAX(OrderID) From Orders Where Orders.CutomerID = '" +  + "')" +
+                //"Values (Select MAX(OrderID) From Orders Where Orders.CutomerID = '" +  + "')" +
                 "Where ItemNumber = (Select Max(ItemNumber) From OrderItem Where OrderItem.ISBN = " + tr.Cells[4].Text +
                 "And OrderID = null);";
                 cmd.ExecuteReader();
 
                 total += double.Parse(tr.Cells[2].Text);
-            }
+            }*/
 
             cmd.CommandText = "Insert into Orders(OrderValue)" +
                 "Values (" + total + ") Where CustomerID = ";

@@ -11,5 +11,7 @@
             <asp:TableHeaderCell>ISBN</asp:TableHeaderCell>
             <asp:TableHeaderCell>AddToCart?</asp:TableHeaderCell>
         </asp:TableHeaderRow>
+        <!--Add text box for queries-->
+        <asp:textbox ID="txtBookSearch" runat="server" CssClass="textInput"></asp:TextBox>
     </asp:Table>
 </asp:Content>
