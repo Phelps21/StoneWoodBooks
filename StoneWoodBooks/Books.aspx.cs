@@ -9,7 +9,7 @@ using System.Web.Configuration;
 
 namespace StoneWoodBooks
 {
-    public partial class Books : System.Web.UI.Page
+    public partial class Books : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -61,7 +61,7 @@ namespace StoneWoodBooks
 
                     Button addBtn = new Button();
                     addBtn.Text = "+";
-                    addBtn.Click += (Sender, E) => AddBtn_Click(sender, e, row);
+                    addBtn.Click += (s, ev) => AddBtn_Click(sender, e, row);
                     tr.Cells[5].Controls.Add(addBtn);
 
                     tblBooks.Rows.Add(tr);
@@ -73,21 +73,17 @@ namespace StoneWoodBooks
 
         void AddBtn_Click(Object sender, EventArgs e, int row)
         {
-            String isbn = tblBooks.Rows[row].Cells[4].Text;
-
-            // Make a new SQL connection and Insert the book into
-            // 
+            string isbn = tblBooks.Rows[row].Cells[4].Text;
+            
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN)" +
-                "Values ((Select Price From Books Where ISBN = " + isbn + ")" +
-                ", " + isbn + ");";
+            cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN, CustomerID)" +
+                "Values ((Select Price From Books Where ISBN = " + isbn + "), " +
+                isbn + ", " + Cache.Get("username") + ");";
 
-            // Open the connection and execute the command
-            // store the returned data in a SqlDataReader object
             conn.Open();
             cmd.ExecuteReader();
             conn.Close();
