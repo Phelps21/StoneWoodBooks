@@ -1,19 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Web.Configuration;
 using System.Text.RegularExpressions;
-using System.Globalization;
+using System.Data.SqlClient;
 
 namespace StoneWoodBooks
 {
-    public partial class MyAccount : System.Web.UI.Page
+    public partial class MyAccount : Page
     {
+        SqlConnection conn = new SqlConnection();
+        SqlCommand cmd = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            cmd.Connection = conn;
 
+            string un = (string)Cache.Get("username"); // short for username
+
+            cmd.CommandText = "Select Email, Phone, StreetName, City, State, Zip from CustEmail, CustPhone, " +
+                "CustAddress where CustEmail.CID = " + un + " and CustPhone.CID = " + un + " and CustPhone.CID = " + 
+                 un + " and CustAddress.CID = " + un + ";";
+
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            txtEmail.Text = reader["Email"].ToString();
+            txtPhone.Text = reader["Phone"].ToString();
+            txtStreet.Text = reader["Street"].ToString();
+            txtCity.Text = reader["City"].ToString();
+            ddlState.SelectedValue = reader["State"].ToString();
+            txtZip.Text = reader["Zip"].ToString();
+
+            conn.Close();
             
         }
 
@@ -77,8 +96,12 @@ namespace StoneWoodBooks
             return true;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void EditInfo(object sender, EventArgs e)
         {
+            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+            cmd.Connection = conn;
+            string un = (string)Cache.Get("username"); // short for username
+
             // This case allows changes
             if (txtPhone.Enabled == false)
             {
@@ -89,6 +112,7 @@ namespace StoneWoodBooks
                 txtStreet.Enabled = true;
                 txtCity.Enabled = true;
                 txtZip.Enabled = true;
+                ddlState.Enabled = true;
             }
 
             // This checks if the email and phone is valid
@@ -103,6 +127,19 @@ namespace StoneWoodBooks
                 txtStreet.Enabled = false;
                 txtCity.Enabled = false;
                 txtZip.Enabled = false;
+                ddlState.Enabled = false;
+
+                conn.Open();
+                cmd.CommandText = "Update CustEmail set Email = " + txtEmail.Text + " where CID = " + un + ";";
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "Update CustPhone set Phone = " + txtPhone.Text + " where CID = " + un + ";";
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "Update CustStreet set StreetName " + txtStreet.Text + ", Zip  = " + txtZip.Text + 
+                    ", State = " + ddlState.Text + " where CID = " + un + ";";
+                cmd.ExecuteNonQuery();
+                conn.Close();
 
                 btnEditInfo.Text = "Edit Info";
 

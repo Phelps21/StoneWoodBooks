@@ -62,7 +62,7 @@
        
         
         </div>
-        <asp:Button CssClass="btn" ID="btnEditInfo" runat="server" Text="Edit Info" OnClick="Button1_Click" />
+        <asp:Button CssClass="btn" ID="btnEditInfo" runat="server" Text="Edit Info" OnClick="EditInfo" />
         <asp:Button CssClass="btn" ID="btnPW" runat="server" Text="Change Password" Width="133px" OnClick="btnPW_Click" />
     
 
