@@ -18,18 +18,19 @@ namespace StoneWoodBooks
 
             string un = (string)Cache.Get("Username"); // short for username
 
-            cmd.CommandText = "Select Email, Phone, StreetName, City, State, Zip from CustEmail, CustPhone, " +
-                "CustAddress where CustEmail.Username = " + un + " and CustPhone.Username = " + un + " and CustPhone.Username = " + 
-                 un + " and CustAddress.Username = " + un + ";";
+            cmd.CommandText = "Select CustomerEmail.Email, CustomerPhone.Phone, CustomerAddress.StreetName, CustomerAddress.StreetNum, " +
+                "Customer.AddressCity, CustomerAddress.StateID, CustomerAddress.Zip from CustomerEmail, CustomerPhone, " +
+                "CustomerAddress WHERE CustomerEmail.Username = " + un + " AND CustomerPhone.Username = " + un
+                + " AND CustomerAddress.Username = " + un + ";";
 
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
             txtEmail.Text = reader["Email"].ToString();
             txtPhone.Text = reader["Phone"].ToString();
-            txtStreet.Text = reader["Street"].ToString();
+            txtStreet.Text = reader["StreetNum"].ToString() + reader["StreetName"].ToString();
             txtCity.Text = reader["City"].ToString();
-            ddlState.SelectedValue = reader["State"].ToString();
+            ddlState.SelectedValue = reader["StateID"].ToString();
             txtZip.Text = reader["Zip"].ToString();
 
             conn.Close();

@@ -36,7 +36,7 @@ namespace StoneWoodBooks
                 String username = txtUser.Text;
                 String password = txtPassword.Text;
 
-                String query = "SELECT COUNT(*) FROM Users WHERE Username ='" + username + "' and Password='" + password + "'";
+                String query = "SELECT COUNT(*) FROM Customer WHERE Username ='" + username + "' and Password='" + password + "'";
                 SqlConnection conn = new SqlConnection();
                 conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
                 conn.Open();
@@ -48,8 +48,8 @@ namespace StoneWoodBooks
 
                 if (count == 1)
                 {
-                    Session["username"] = txtUser.Text;
-                    Cache.Insert("username", txtUser.Text);
+                    Session["Username"] = txtUser.Text;
+                    Cache.Insert("Username", txtUser.Text);
                     Response.Redirect("Default.aspx");
                 }
                 else
