@@ -15,15 +15,6 @@ namespace StoneWoodBooks
     {
 
         /// <summary>
-        /// tblBooks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblBooks;
-
-        /// <summary>
         /// txtBookSearch control.
         /// </summary>
         /// <remarks>
@@ -31,5 +22,14 @@ namespace StoneWoodBooks
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBookSearch;
+
+        /// <summary>
+        /// tblBooks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblBooks;
     }
 }

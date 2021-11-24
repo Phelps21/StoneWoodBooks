@@ -15,21 +15,57 @@ namespace StoneWoodBooks
     {
 
         /// <summary>
-        /// tblAuthorsAdmin control.
+        /// tblAuthor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblAuthorsAdmin;
+        protected global::System.Web.UI.WebControls.Table tblAuthor;
 
         /// <summary>
-        /// tblBooksAuthoredAdmin control.
+        /// txtAuthors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblBooksAuthoredAdmin;
+        protected global::System.Web.UI.WebControls.TextBox txtAuthors;
+
+        /// <summary>
+        /// btnQueryAuthor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQueryAuthor;
+
+        /// <summary>
+        /// tblBooks_Authored control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblBooks_Authored;
+
+        /// <summary>
+        /// txtBooks_Authored control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBooks_Authored;
+
+        /// <summary>
+        /// btnQueryBooksAuthored control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQueryBooksAuthored;
     }
 }

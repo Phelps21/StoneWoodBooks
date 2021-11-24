@@ -15,30 +15,138 @@ namespace StoneWoodBooks
     {
 
         /// <summary>
-        /// tblBooksAdmin control.
+        /// tblBooks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblBooksAdmin;
+        protected global::System.Web.UI.WebControls.Table tblBooks;
 
         /// <summary>
-        /// tblBooksAuthoredAdmin control.
+        /// txtBooks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblBooksAuthoredAdmin;
+        protected global::System.Web.UI.WebControls.TextBox txtBooks;
 
         /// <summary>
-        /// tblBooks_CategoriesAdmin control.
+        /// btnQueryBooks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblBooks_CategoriesAdmin;
+        protected global::System.Web.UI.WebControls.Button btnQueryBooks;
+
+        /// <summary>
+        /// tblBooks_Authored control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblBooks_Authored;
+
+        /// <summary>
+        /// txtBooks_Authored control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBooks_Authored;
+
+        /// <summary>
+        /// btnQueryBooks_Authored control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQueryBooks_Authored;
+
+        /// <summary>
+        /// tblBookCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblBookCategories;
+
+        /// <summary>
+        /// txtBookCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBookCategories;
+
+        /// <summary>
+        /// btnQueryBookCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQueryBookCategories;
+
+        /// <summary>
+        /// tblBook_And_Category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblBook_And_Category;
+
+        /// <summary>
+        /// txtBook_And_Category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBook_And_Category;
+
+        /// <summary>
+        /// btnQueryBook_And_Category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQueryBook_And_Category;
+
+        /// <summary>
+        /// tblSuppliedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblSuppliedBy;
+
+        /// <summary>
+        /// txtSuppliedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSuppliedBy;
+
+        /// <summary>
+        /// btnQuerySuppliedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQuerySuppliedBy;
     }
 }

@@ -57,6 +57,7 @@
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="~/MyAccount">My Account</a></li>
                         <li ><a runat="server" href="~/ShoppingCart" class="glyphicon glyphicon-shopping-cart"></a></li>
+                        <asp:Label ID="lblUser" runat="server"></asp:Label>
                     </ul>
                 </div>
             </div>
