@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Browse Books</h2>
     <br />
+    <br />
+    <asp:Textbox ID="txtBookSearch" runat="server" CssClass="textInput"></asp:Textbox>
     <asp:Table ID="tblBooks" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
             <asp:TableHeaderCell>Title</asp:TableHeaderCell>
@@ -11,7 +13,6 @@
             <asp:TableHeaderCell>ISBN</asp:TableHeaderCell>
             <asp:TableHeaderCell>AddToCart?</asp:TableHeaderCell>
         </asp:TableHeaderRow>
-        <!--Add text box for queries-->
-        <asp:Textbox ID="txtBookSearch" runat="server" CssClass="textInput"></asp:Textbox>
     </asp:Table>
+
 </asp:Content>
