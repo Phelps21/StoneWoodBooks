@@ -9,7 +9,7 @@ using System.Web.Configuration;
 
 namespace StoneWoodBooks
 {
-    public partial class MyCart : System.Web.UI.Page
+    public partial class MyCart : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,13 +22,10 @@ namespace StoneWoodBooks
             cmd.Connection = conn;
 
             cmd.CommandText = "SELECT Books.Title, Author.LastName, Books.Price, " +
-                "BookCategories.CategoryDescription, Book.ISBN FROM Books, Author, BookCategories WHERE " +
+                "BookCategories.CategoryDescription, Book.ISBN FROM Books, Author, BookCategories, OrderItem WHERE " +
                 "Author.AID = BookAuthored.AID AND Books.ISBN = BookAuthored.ISBN AND Books.ISBN = " +
                 "Books_BookCategories.ISBN AND BookCategories.CategoryCode = Books_BookCategories.CategoryCode" +
-                "AND OrderItem.OrderID = null AND ";
-
-            throw new Exception("Find out how to incorporate customers here");
-
+                "AND OrderItem.OrderID = null AND OrderItem.CustomerID = " + Cache.Get("Username") + ";";
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
@@ -39,6 +36,7 @@ namespace StoneWoodBooks
             // then loop through each record to build the table to display the books
             if (reader.HasRows)
             {
+                Table tblBooks = Page.FindControl("tblBooks") as Table;
                 int row = 0;
                 // Build the table 
                 while (reader.Read())
@@ -65,11 +63,11 @@ namespace StoneWoodBooks
                     tr.Cells.Add(tc);
 
                     Button btnRemove = new Button();
-                    btnRemove.Text = "+";
+                    btnRemove.Text = "-";
                     btnRemove.Click += btnRemove_Click;
                     tr.Cells[5].Controls.Add(btnRemove);
 
-                    //tblBooks.Rows.Add(tr);
+                    tblBooks.Rows.Add(tr);
                     row++;
                 }
             }
@@ -78,47 +76,45 @@ namespace StoneWoodBooks
 
         protected void ConfirmOrder(object sender, EventArgs e)
         {
-            // Make a new SQL connection and Insert the book into
-            // 
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
+            DateTime rn = DateTime.Now;
 
-            
+            conn.Open();
             cmd.CommandText = "Insert into Orders(OrderDate, CustomerID)" +
-                //"Values (" + DateTime.Now + ", " +  + "');";  // I need to figure out how to get the customerID
-
+                "Values (" + rn + ", " + Cache.Get("Username") + "');";
             cmd.ExecuteReader();
 
             double total = 0;
-            /*foreach (TableRow tr in tblBooks.Rows)
+            Table tblBooks = Page.FindControl("tblBooks") as Table;
+
+            // Here we update OrderItems to connect them to an order ID and find OrderValue with total
+            foreach (TableRow tr in tblBooks.Rows)
             {
-                cmd.CommandText = "Insert into OrderItem(OrderID)" +
-                //"Values (Select MAX(OrderID) From Orders Where Orders.CutomerID = '" +  + "')" +
-                "Where ItemNumber = (Select Max(ItemNumber) From OrderItem Where OrderItem.ISBN = " + tr.Cells[4].Text +
-                "And OrderID = null);";
+                cmd.CommandText = "Update OrderItem set OrderID (Select MAX(OrderID) From Orders Where " +
+                "Orders.CutomerID = '" + Cache.Get("Username") + "') Where ItemNumber = (Select Max(ItemNumber) " +
+                "From OrderItem Where OrderItem.ISBN = " + tr.Cells[4].Text + "And OrderItem.CustomerID = " + 
+                Cache.Get("Username") + " and OrderID = null);";
                 cmd.ExecuteReader();
 
                 total += double.Parse(tr.Cells[2].Text);
-            }*/
+            }
 
-            cmd.CommandText = "Insert into Orders(OrderValue)" +
-                "Values (" + total + ") Where CustomerID = ";
-
-
+            cmd.CommandText = "Update Orders OrderValue = " + total + " Where CustomerID = " + 
+                Cache.Get("Username") + "AND Orders.OrderDate = " + rn + ";";
 
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
-            conn.Open();
             cmd.ExecuteReader();
             conn.Close();
         }
 
         protected void btnRemove_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
