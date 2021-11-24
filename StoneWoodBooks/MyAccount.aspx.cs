@@ -16,11 +16,11 @@ namespace StoneWoodBooks
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             cmd.Connection = conn;
 
-            string un = (string)Cache.Get("username"); // short for username
+            string un = (string)Cache.Get("Username"); // short for username
 
             cmd.CommandText = "Select Email, Phone, StreetName, City, State, Zip from CustEmail, CustPhone, " +
-                "CustAddress where CustEmail.CID = " + un + " and CustPhone.CID = " + un + " and CustPhone.CID = " + 
-                 un + " and CustAddress.CID = " + un + ";";
+                "CustAddress where CustEmail.Username = " + un + " and CustPhone.Username = " + un + " and CustPhone.Username = " + 
+                 un + " and CustAddress.Username = " + un + ";";
 
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -100,7 +100,7 @@ namespace StoneWoodBooks
         {
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             cmd.Connection = conn;
-            string un = (string)Cache.Get("username"); // short for username
+            string un = (string)Cache.Get("Username"); // short for username
 
             // This case allows changes
             if (txtPhone.Enabled == false)
@@ -130,14 +130,14 @@ namespace StoneWoodBooks
                 ddlState.Enabled = false;
 
                 conn.Open();
-                cmd.CommandText = "Update CustEmail set Email = " + txtEmail.Text + " where CID = " + un + ";";
+                cmd.CommandText = "Update CustEmail set Email = " + txtEmail.Text + " where Username = " + un + ";";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "Update CustPhone set Phone = " + txtPhone.Text + " where CID = " + un + ";";
+                cmd.CommandText = "Update CustPhone set Phone = " + txtPhone.Text + " where Username = " + un + ";";
                 cmd.ExecuteNonQuery();
 
                 cmd.CommandText = "Update CustStreet set StreetName " + txtStreet.Text + ", Zip  = " + txtZip.Text + 
-                    ", State = " + ddlState.Text + " where CID = " + un + ";";
+                    ", State = " + ddlState.Text + " where Username = " + un + ";";
                 cmd.ExecuteNonQuery();
                 conn.Close();
 

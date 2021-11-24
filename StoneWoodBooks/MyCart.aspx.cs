@@ -24,7 +24,7 @@ namespace StoneWoodBooks
                 "BookCategories.CategoryDescription, Book.ISBN FROM Books, Author, BookCategories, OrderItem WHERE " +
                 "Author.AID = BookAuthored.AID AND Books.ISBN = BookAuthored.ISBN AND Books.ISBN = " +
                 "Books_BookCategories.ISBN AND BookCategories.CategoryCode = Books_BookCategories.CategoryCode" +
-                "AND OrderItem.OrderID = null AND OrderItem.CustomerID = " + Cache.Get("username") + ";";
+                "AND OrderItem.OrderID = null AND OrderItem.CustomerID = " + Cache.Get("Username") + ";";
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
@@ -83,7 +83,7 @@ namespace StoneWoodBooks
 
             conn.Open();
             cmd.CommandText = "Insert into Orders(OrderDate, CustomerID)" +
-                "Values (" + rn + ", " + Cache.Get("username") + "');";
+                "Values (" + rn + ", " + Cache.Get("Username") + "');";
             cmd.ExecuteReader();
 
             double total = 0;
@@ -93,16 +93,16 @@ namespace StoneWoodBooks
             foreach (TableRow tr in tblBooks.Rows)
             {
                 cmd.CommandText = "Update OrderItem set OrderID (Select MAX(OrderID) From Orders Where " +
-                "Orders.CutomerID = '" + Cache.Get("username") + "') Where ItemNumber = (Select Max(ItemNumber) " +
+                "Orders.CutomerID = '" + Cache.Get("Username") + "') Where ItemNumber = (Select Max(ItemNumber) " +
                 "From OrderItem Where OrderItem.ISBN = " + tr.Cells[4].Text + "And OrderItem.CustomerID = " + 
-                Cache.Get("username") + " and OrderID = null);";
+                Cache.Get("Username") + " and OrderID = null);";
                 cmd.ExecuteReader();
 
                 total += double.Parse(tr.Cells[2].Text);
             }
 
             cmd.CommandText = "Update Orders OrderValue = " + total + " Where CustomerID = " + 
-                Cache.Get("username") + "AND Orders.OrderDate = " + rn + ";";
+                Cache.Get("Username") + "AND Orders.OrderDate = " + rn + ";";
 
 
             // Open the connection and execute the command

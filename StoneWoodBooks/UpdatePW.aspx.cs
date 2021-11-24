@@ -19,7 +19,7 @@ namespace StoneWoodBooks
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             cmd.Connection = conn;
 
-            cmd.CommandText = "Select Password From Customer where CID = " + (string)Cache.Get("username") + ";";
+            cmd.CommandText = "Select Password From Customer where Username = " + (string)Cache.Get("Username") + ";";
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
@@ -27,7 +27,9 @@ namespace StoneWoodBooks
             {
                 lblpw.Text = "Please Enter your new password";
                 btnSubmit.Enabled = false;
+                btnSubmit.Visible = false;
                 btnChangePW.Enabled = true;
+                btnChangePW.Visible = true;
             }
 
             else

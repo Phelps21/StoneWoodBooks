@@ -82,7 +82,7 @@ namespace StoneWoodBooks
 
             cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN, CustomerID)" +
                 "Values ((Select Price From Books Where ISBN = " + isbn + "), " +
-                isbn + ", " + Cache.Get("username") + ");";
+                isbn + ", " + Cache.Get("Username") + ");";
 
             conn.Open();
             cmd.ExecuteReader();
