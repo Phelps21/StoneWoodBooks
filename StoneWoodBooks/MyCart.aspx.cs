@@ -13,6 +13,7 @@ namespace StoneWoodBooks
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+         
             // Make a new SQL connection and select the necessary elements
             // to display on the Books page
             SqlConnection conn = new SqlConnection();

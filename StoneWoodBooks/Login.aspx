@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="StoneWoodBooks.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" >
+    <script>
+        let d = new Date();
+        console.log(d);
+    </script>
     <div id="loginPage">
         <h1>Login</h1>
         <asp:Label ID="ulabel" AssociatedControlID="txtUser" runat="server" Text="Username" />

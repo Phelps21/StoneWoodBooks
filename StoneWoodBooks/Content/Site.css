@@ -75,3 +75,29 @@ h1, h2, h3
         opacity: 1;
     }
 }
+
+.query-text
+{
+    width: 480px;
+}
+#MainContent_txtAuthors {
+    width: 950px;
+}
+#MainContent_txtBooksAuthored {
+    width: 950px;
+}
+#MainContent_txtCustomer{
+    width: 950px;
+}
+#MainContent_txtCustomerPhone {
+    width: 950px;
+}
+#MainContent_txtCustomerAddress {
+    width: 950px;
+}
+#MainContent_txtBooks {
+    width: 950px;
+}
+#MainContent_TxtBooks_Categories {
+    width: 950px;
+}

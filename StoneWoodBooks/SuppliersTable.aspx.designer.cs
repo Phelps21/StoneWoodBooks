@@ -15,21 +15,84 @@ namespace StoneWoodBooks
     {
 
         /// <summary>
-        /// tblSuppliersAdmin control.
+        /// tblSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblSuppliersAdmin;
+        protected global::System.Web.UI.WebControls.Table tblSupplier;
 
         /// <summary>
-        /// tblSupplierRepsAdmin control.
+        /// txtSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblSupplierRepsAdmin;
+        protected global::System.Web.UI.WebControls.TextBox txtSupplier;
+
+        /// <summary>
+        /// btnQuerySupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQuerySupplier;
+
+        /// <summary>
+        /// tblSupplierRep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblSupplierRep;
+
+        /// <summary>
+        /// txtSupplierRep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSupplierRep;
+
+        /// <summary>
+        /// btnQuerySupplierRep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQuerySupplierRep;
+
+        /// <summary>
+        /// tblSuppliedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblSuppliedBy;
+
+        /// <summary>
+        /// txtSuppliedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSuppliedBy;
+
+        /// <summary>
+        /// btnQuerySuppliedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQuerySuppliedBy;
     }
 }
