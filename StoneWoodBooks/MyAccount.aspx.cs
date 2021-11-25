@@ -12,28 +12,32 @@ namespace StoneWoodBooks
         SqlCommand cmd = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
-            cmd.Connection = conn;
+            // This lets you add new info to the textboxes
+            if (!IsPostBack)
+            {
+                conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+                cmd.Connection = conn;
 
-            string un = (string)Cache.Get("Username"); // short for username
+                string un = (string)Cache.Get("Username"); // short for username
 
-            cmd.CommandText = "Select CustomerEmail.Email, CustomerPhone.Phone, CustomerAddress.StreetName, CustomerAddress.StreetNum, " +
-                "Customer.AddressCity, CustomerAddress.StateID, CustomerAddress.Zip from CustomerEmail, CustomerPhone, " +
-                "CustomerAddress WHERE CustomerEmail.Username = " + un + " AND CustomerPhone.Username = " + un
-                + " AND CustomerAddress.Username = " + un + ";";
+                cmd.CommandText = "Select Email, Phone, StreetName, StreetNum, " +
+                    "City, State, Zip from CustomerEmail, CustomerPhone, " +
+                    "CustomerAddress WHERE CustomerEmail.Username = '" + un + "' AND CustomerPhone.Username = '" + un +
+                    "' AND CustomerAddress.Username = '" + un + "';";
 
-            conn.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            txtEmail.Text = reader["Email"].ToString();
-            txtPhone.Text = reader["Phone"].ToString();
-            txtStreet.Text = reader["StreetNum"].ToString() + reader["StreetName"].ToString();
-            txtCity.Text = reader["City"].ToString();
-            ddlState.SelectedValue = reader["StateID"].ToString();
-            txtZip.Text = reader["Zip"].ToString();
-
-            conn.Close();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    txtEmail.Text = reader["Email"].ToString();
+                    txtPhone.Text = reader["Phone"].ToString();
+                    txtStreet.Text = reader["StreetNum"].ToString() + " " + reader["StreetName"].ToString();
+                    txtCity.Text = reader["City"].ToString();
+                    ddlState.Text = reader["State"].ToString();
+                    txtZip.Text = reader["Zip"].ToString();
+                }
+                conn.Close();
+            }
             
         }
 
@@ -61,14 +65,16 @@ namespace StoneWoodBooks
             // Test if the alt email address is a valid one within 200 ms
             try
             {
-                if (!Regex.IsMatch(txtAltEmail.Text, @"(.*\D+.*)@(.*\D+.*)\.(\D+)", RegexOptions.None,
-                    TimeSpan.FromMilliseconds(200)) || Regex.IsMatch(txtAltEmail.Text, @"[\s_]"))
+                if (!txtAltEmail.Text.Equals(""))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('You have inserted an invalid email address')", true);
-                    return false;
+                    if (!Regex.IsMatch(txtAltEmail.Text, @"(.*\D+.*)@(.*\D+.*)\.(\D+)", RegexOptions.None,
+                        TimeSpan.FromMilliseconds(200)) || Regex.IsMatch(txtAltEmail.Text, @"[\s_]"))
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                            "alert('You have inserted an invalid email address')", true);
+                        return false;
+                    }
                 }
-
             }
 
             catch (RegexMatchTimeoutException)
@@ -117,11 +123,7 @@ namespace StoneWoodBooks
             }
 
             // This checks if the email and phone is valid
-            else if (!isValid()) { } // Do nothing
-
-            // This case submits all changes
-            else
-            {
+            else if (isValid()) { 
                 txtEmail.Enabled = false;
                 txtAltEmail.Enabled = false;
                 txtPhone.Enabled = false;
@@ -131,19 +133,24 @@ namespace StoneWoodBooks
                 ddlState.Enabled = false;
 
                 conn.Open();
-                cmd.CommandText = "Update CustEmail set Email = " + txtEmail.Text + " where Username = " + un + ";";
+                cmd.CommandText = "Update CustomerEmail set Email = '" + txtEmail.Text + "' where Username = '" + un + "';";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "Update CustPhone set Phone = " + txtPhone.Text + " where Username = " + un + ";";
+                cmd.CommandText = "Update CustomerPhone set Phone = " + txtPhone.Text + " where Username = '" + un + "';";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "Update CustStreet set StreetName " + txtStreet.Text + ", Zip  = " + txtZip.Text + 
-                    ", State = " + ddlState.Text + " where Username = " + un + ";";
+                Regex r = new Regex(@"(?<number>\d+)?\s*(?<street>[^,\d]+)\s*(?<number>\d+)?$");
+                Match m = r.Match(txtStreet.Text);
+                string number = m.Groups["number"].Value;
+                string street = m.Groups["street"].Value;
+
+
+                cmd.CommandText = "Update CustomerAddress set StreetName = '" + street + "', StreetNum = " + number 
+                    + ", Zip  = " + txtZip.Text + ", State = '" + ddlState.Text + "' where Username = '" + un + "';";
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
                 btnEditInfo.Text = "Edit Info";
-
             }
         }
 

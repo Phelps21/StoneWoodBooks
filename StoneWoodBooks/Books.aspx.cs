@@ -93,9 +93,9 @@ namespace StoneWoodBooks
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN, CustomerID)" +
+            cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN, Username)" +
                 "Values ((Select Price From Books Where ISBN = " + isbn + "), " +
-                isbn + ", " + Cache.Get("Username") + ");";
+                isbn + ", '" + Cache.Get("Username") + "');";
 
             conn.Open();
             cmd.ExecuteReader();
