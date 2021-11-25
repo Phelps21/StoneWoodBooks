@@ -36,7 +36,7 @@ namespace StoneWoodBooks
                 String username = txtUser.Text;
                 String password = txtPassword.Text;
 
-                String query = "SELECT COUNT(*) FROM Users WHERE Username ='" + username + "' and Password='" + password + "'";
+                String query = "SELECT COUNT(*) FROM Customer WHERE Username ='" + username + "' and Password='" + password + "'";
                 SqlConnection conn = new SqlConnection();
                 conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
                 conn.Open();
@@ -48,8 +48,8 @@ namespace StoneWoodBooks
 
                 if (count == 1)
                 {
-                    Session["username"] = txtUser.Text;
-                    Cache.Insert("username", txtUser.Text);
+                    Session["Username"] = txtUser.Text;
+                    Cache.Insert("Username", txtUser.Text);
                     Response.Redirect("Default.aspx");
                 }
                 else
@@ -76,6 +76,35 @@ namespace StoneWoodBooks
         protected void btnAdminLogin_Click(object sender, EventArgs e)
         {
             //this method will query the admin table for login validation
+            try
+            {
+                String username = txtUser.Text;
+                String password = txtPassword.Text;
+
+                String query = "SELECT COUNT(*) FROM Admin WHERE Username ='" + username + "' and Password='" + password + "'";
+                SqlConnection conn = new SqlConnection();
+                conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Connection = conn;
+
+
+                Int32 count = (Int32)cmd.ExecuteScalar();
+
+                if (count == 1)
+                {
+                    Response.Redirect("Admin.aspx");
+                }
+                else
+                {
+                    Response.Write("Invalid username/password");
+                }
+            }
+            catch (Exception)
+            {
+                Response.Write("Error: Invalid input");
+
+            }
         }
     }
 }

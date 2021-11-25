@@ -1,0 +1,10 @@
+﻿USE [C:\USERS\DEVIN\SOURCE\REPOS\STONEWOODBOOKS\STONEWOODBOOKS\APP_DATA\STONEWOODDATA.MDF]
+
+CREATE TABLE [dbo].[Admin] (
+    [Username] VARCHAR (24) NOT NULL,
+    [Password] VARCHAR (24) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Username] ASC)
+);
+
+INSERT INTO Admin(Username, Password)
+VALUES('admin', 'admin');

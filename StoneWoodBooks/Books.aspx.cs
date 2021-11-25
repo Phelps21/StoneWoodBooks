@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
@@ -9,7 +6,7 @@ using System.Web.Configuration;
 
 namespace StoneWoodBooks
 {
-    public partial class Books : System.Web.UI.Page
+    public partial class Books : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,10 +17,15 @@ namespace StoneWoodBooks
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            cmd.CommandText = "SELECT Books.Title, Author.LastName, Books.Price, " +
-                "BookCategories.CategoryDescription, Book.ISBN FROM Books, Author, BookCategories WHERE " +
-                "Author.AID = BookAuthored.AID AND Books.ISBN = BookAuthored.ISBN AND Books.ISBN = " +
-                "Books_BookCategories.ISBN AND BookCategories.CategoryCode = Books_BookCategories.CategoryCode";
+            /*cmd.CommandText = "SELECT Books.Title, Author.Lname, Books.Price, BookCategories.CategoryDescription," +
+                " Books.ISBN FROM Books, Author, BookCategories WHERE Author.AID = Books_Authored.AID AND Books.ISBN = " +
+                "Books_Authored.ISBN AND Books.ISBN = Book_BookCategories.ISBN AND BookCategories.CategoryID =" +
+                " Book_BookCategories.CategoryID";*/
+
+            cmd.CommandText = "SELECT Books.Title, Author.Lname, Books.Price, BookCategories.CategoryDescription, Books.ISBN FROM Books, Author," +
+                " BookCategories, Book_And_Category, Books_Authored WHERE Books.ISBN = Books_Authored.ISBN AND Books.ISBN = Book_And_Category.ISBN " +
+                "AND Book_And_Category.CategoryID = BookCategories.CategoryID AND Books_Authored.AID = Author.AID;";
+
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
@@ -44,7 +46,7 @@ namespace StoneWoodBooks
                     tr.Cells.Add(tc);
 
                     tc = new TableCell();
-                    tc.Text = reader["LastName"].ToString();
+                    tc.Text = reader["Lname"].ToString();
                     tr.Cells.Add(tc);
 
                     tc = new TableCell();
@@ -59,35 +61,42 @@ namespace StoneWoodBooks
                     tc.Text = reader["ISBN"].ToString();
                     tr.Cells.Add(tc);
 
-                    Button addBtn = new Button();
-                    addBtn.Text = "+";
-                    addBtn.Click += (Sender, E) => AddBtn_Click(sender, e, row);
-                    tr.Cells[5].Controls.Add(addBtn);
-
                     tblBooks.Rows.Add(tr);
                     row++;
                 }
+
+                foreach(TableRow tr in tblBooks.Rows)
+                {
+                    if (tr == tblBooks.Rows[0])
+                        continue;
+
+                    TableCell tblcell = new TableCell();
+
+                    Button addBtn = new Button();
+                    addBtn.Text = "+";
+                    addBtn.Click += (s, ev) => AddBtn_Click(sender, e, row);
+
+                    tblcell.Controls.Add(addBtn);
+                    tr.Cells.Add(tblcell);
+                }
+
             }
             conn.Close();
         }
 
         void AddBtn_Click(Object sender, EventArgs e, int row)
         {
-            String isbn = tblBooks.Rows[row].Cells[4].Text;
-
-            // Make a new SQL connection and Insert the book into
-            // 
+            string isbn = tblBooks.Rows[row].Cells[4].Text;
+            
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN)" +
-                "Values ((Select Price From Books Where ISBN = " + isbn + ")" +
-                ", " + isbn + ");";
+            cmd.CommandText = "Insert into OrderItem(ItemPrice, ISBN, CustomerID)" +
+                "Values ((Select Price From Books Where ISBN = " + isbn + "), " +
+                isbn + ", " + Cache.Get("Username") + ");";
 
-            // Open the connection and execute the command
-            // store the returned data in a SqlDataReader object
             conn.Open();
             cmd.ExecuteReader();
             conn.Close();
