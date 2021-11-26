@@ -171,6 +171,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SQL\Admin.sql" />
     <Content Include="SQL\Author.sql" />
     <Content Include="SQL\AuthorAddress.sql" />
     <Content Include="SQL\AuthorEmail.sql" />
@@ -183,6 +184,8 @@
     <Content Include="SQL\CustomerAddress.sql" />
     <Content Include="SQL\CustomerEmail.sql" />
     <Content Include="SQL\CustomerPhone.sql" />
+    <Content Include="SQL\OrderItem.sql" />
+    <Content Include="SQL\Orders.sql" />
     <Content Include="SQL\State.sql" />
     <Content Include="SQL\SuppliedBy.sql" />
     <Content Include="SQL\Supplier.sql" />
