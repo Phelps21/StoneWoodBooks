@@ -62,19 +62,21 @@ namespace StoneWoodBooks
                     tr.Cells.Add(tc);
 
                     tblBooks.Rows.Add(tr);
-                    row++;
                 }
 
                 foreach(TableRow tr in tblBooks.Rows)
                 {
+                    
                     if (tr == tblBooks.Rows[0])
                         continue;
 
+                    row++;
                     TableCell tblcell = new TableCell();
 
                     Button addBtn = new Button();
                     addBtn.Text = "+";
-                    addBtn.Click += (s, ev) => AddBtn_Click(sender, e, row);
+                    int btnrow = row; 
+                    addBtn.Click += (s, ev) => AddBtn_Click(sender, e, btnrow);
 
                     tblcell.Controls.Add(addBtn);
                     tr.Cells.Add(tblcell);
@@ -98,7 +100,7 @@ namespace StoneWoodBooks
                 isbn + ", '" + Cache.Get("Username") + "');";
 
             conn.Open();
-            cmd.ExecuteReader();
+            cmd.ExecuteNonQuery();
             conn.Close();
         }
     }
