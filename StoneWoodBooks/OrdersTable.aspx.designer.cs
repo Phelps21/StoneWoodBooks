@@ -15,12 +15,30 @@ namespace StoneWoodBooks
     {
 
         /// <summary>
-        /// tblOrdersAdmin control.
+        /// tblOrders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblOrdersAdmin;
+        protected global::System.Web.UI.WebControls.Table tblOrders;
+
+        /// <summary>
+        /// txtOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrders;
+
+        /// <summary>
+        /// btnQueryOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnQueryOrders;
     }
 }

@@ -126,7 +126,7 @@ namespace StoneWoodBooks
             cmd.ExecuteNonQuery();
             conn.Close();
 
-            Response.Redirect("MyCart");
+            Response.Redirect("MyCart.aspx");
         }
 
     }
