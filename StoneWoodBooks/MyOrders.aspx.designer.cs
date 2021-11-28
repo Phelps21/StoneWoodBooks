@@ -11,25 +11,16 @@ namespace StoneWoodBooks
 {
 
 
-    public partial class MyCart
+    public partial class MyOrders
     {
 
         /// <summary>
-        /// tblBooks control.
+        /// tblOrders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblBooks;
-
-        /// <summary>
-        /// btnConfirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirm;
+        protected global::System.Web.UI.WebControls.Table tblOrders;
     }
 }
