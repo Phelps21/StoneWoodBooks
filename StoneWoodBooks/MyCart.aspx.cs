@@ -74,7 +74,7 @@ namespace StoneWoodBooks
                     Button btnRemove = new Button();
                     btnRemove.Text = "-";
                     int btnrow = row;
-                    btnRemove.Click += (s, ev) => btnRemove_Click(sender, e, btnrow);
+                    btnRemove.Click += (s, ev) => btnRemove_Click(btnRemove, e, btnrow);
 
                     tblcell.Controls.Add(btnRemove);
                     tr.Cells.Add(tblcell);
