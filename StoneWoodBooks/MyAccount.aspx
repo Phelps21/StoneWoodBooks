@@ -16,7 +16,7 @@
         <asp:Label ID="lblAltEmail" runat="server" Text="Alternate Email"></asp:Label>
         </div>
         <div class="col-md-9">
-        <asp:TextBox ID="txtAltEmail" runat="server" CssClass="form-control" Enabled="False" required ="false"></asp:TextBox>
+        <asp:TextBox ID="txtAltEmail" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
         </div>
         <br />
         <br />
@@ -56,8 +56,9 @@
         <asp:Label ID="lblState" runat="server" Text="State"></asp:Label>
         </div>
         <div class="col-md-9">
-        <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
+        <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control" Enabled="False" DataSourceID="DBState" DataTextField="StateID" DataValueField="StateID" ViewStateMode="Enabled">
         </asp:DropDownList>
+            <asp:SqlDataSource ID="DBState" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [StateID] FROM [State]"></asp:SqlDataSource>
         </div>
        
         

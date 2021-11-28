@@ -9,21 +9,17 @@ namespace StoneWoodBooks
     {
         SqlConnection conn = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
 
         protected void Submit(object sender, EventArgs e)
         {
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             cmd.Connection = conn;
 
-            cmd.CommandText = "Select Password From Customer where Username = " + (string)Cache.Get("Username") + ";";
+            cmd.CommandText = "Select Password From Customer where Username = '" + (string)Cache.Get("Username") + "';";
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
-            if (reader[0].ToString().Equals(txtPW.Text))
+            if (reader.Read() & reader[0].ToString().Equals(txtPW.Text))
             {
                 lblpw.Text = "Please Enter your new password";
                 btnSubmit.Enabled = false;
@@ -35,7 +31,7 @@ namespace StoneWoodBooks
             else
                 lblpw.Text = "Wrong password entered, try typing slowly";
 
-
+            conn.Close();
         }
 
         protected void btnChangePW_Click(object sender, EventArgs e)
@@ -48,12 +44,15 @@ namespace StoneWoodBooks
 
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             cmd.Connection = conn;
+            conn.Open();
 
-            cmd.CommandText = "Update Customer Set Password = " + txtPW.Text + ";";
+            cmd.CommandText = "Update Customer Set Password = '" + txtPW.Text + "' Where Username = '" 
+                + Cache.Get("Username") + "';";
             cmd.ExecuteNonQuery();
-
+            conn.Close();
             lblpw.Text = "Password changed";
-
+            btnChangePW.Visible = false;
+            txtPW.Visible = false;
 
         }
     }

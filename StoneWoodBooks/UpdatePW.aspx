@@ -9,7 +9,7 @@
         <br />
         <asp:Label ID="lblpw" runat="server" Text="Type in your current password" Height="30px"></asp:Label>
     <br />
-        <asp:TextBox ID="txtPW" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtPW" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         <br />
         <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="Submit" />
