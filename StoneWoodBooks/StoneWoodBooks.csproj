@@ -188,6 +188,7 @@
     <Content Include="SQL\CustomerPhone.sql" />
     <Content Include="SQL\OrderItem.sql" />
     <Content Include="SQL\Orders.sql" />
+    <Content Include="SQL\Reviews.sql" />
     <Content Include="SQL\State.sql" />
     <Content Include="SQL\SuppliedBy.sql" />
     <Content Include="SQL\Supplier.sql" />

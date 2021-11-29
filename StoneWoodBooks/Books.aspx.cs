@@ -125,21 +125,25 @@ namespace StoneWoodBooks
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            while (tblBooks.Rows.Count > 1)
+                tblBooks.Rows.RemoveAt(1);
             SqlCommand cmd = new SqlCommand();
-            if (txtBookSearch.Equals(""))
+            if (txtBookSearch.Text.Equals(""))
             {
-                cmd.CommandText = "SELECT Books.Title, Author.Lname, Books.Price, BookCategories.CategoryDescription, Books.ISBN, Books.PublicationDate FROM Books, Author," +
-                    " BookCategories, Book_And_Category, Books_Authored WHERE Books.ISBN = Books_Authored.ISBN AND Books.ISBN = Book_And_Category.ISBN " +
-                    "AND Book_And_Category.CategoryID = BookCategories.CategoryID AND Books_Authored.AID = Author.AID;";
+                Page_Load(sender, e);
+                return;
             }
             else
             {
                 //uses pattern matching and a bunch of ORs to filter by keyword
-                cmd.CommandText = "SELECT * FROM(SELECT Books.Title, Author.Lname, Books.Price, BookCategories.CategoryDescription, Books.ISBN, Books.PublicationDate FROM Books, Author," +
+                cmd.CommandText = "SELECT Books.Title, Author.Lname, Books.Price, BookCategories.CategoryDescription, Books.ISBN, Books.PublicationDate FROM Books, Author," +
                     " BookCategories, Book_And_Category, Books_Authored WHERE Books.ISBN = Books_Authored.ISBN AND Books.ISBN = Book_And_Category.ISBN " +
-                    "AND Book_And_Category.CategoryID = BookCategories.CategoryID AND Books_Authored.AID = Author.AID) WHERE Books.Title = '" +%txtBookSearch.Text%"' ""OR Author.Fname ;";
+                    "AND Book_And_Category.CategoryID = BookCategories.CategoryID AND Books_Authored.AID = Author.AID AND Books.Title LIKE '%" +txtBookSearch.Text +"%' OR Author.Fname LIKE '%"+txtBookSearch.Text +"%' OR Author.Lname LIKE '%" +txtBookSearch.Text+"%' OR Books.ISBN LIKE '%" +txtBookSearch +"' OR BookCategories.CategoryDescription Like '%" +txtBookSearch.Text+"' OR Books.PublicationDate LIKE '%" +txtBookSearch+"';";
             }
-                SqlConnection conn = new SqlConnection();
+
+            
+
+            SqlConnection conn = new SqlConnection();
                 conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
                 
                 cmd.Connection = conn;
@@ -149,9 +153,9 @@ namespace StoneWoodBooks
                     "Books_Authored.ISBN AND Books.ISBN = Book_BookCategories.ISBN AND BookCategories.CategoryID =" +
                     " Book_BookCategories.CategoryID";*/
 
-                cmd.CommandText = "SELECT Books.Title, Author.Lname, Books.Price, BookCategories.CategoryDescription, Books.ISBN, Books.PublicationDate FROM Books, Author," +
+                /*cmd.CommandText = "SELECT Books.Title, Author.Lname, Books.Price, BookCategories.CategoryDescription, Books.ISBN, Books.PublicationDate FROM Books, Author," +
                     " BookCategories, Book_And_Category, Books_Authored WHERE Books.ISBN = Books_Authored.ISBN AND Books.ISBN = Book_And_Category.ISBN " +
-                    "AND Book_And_Category.CategoryID = BookCategories.CategoryID AND Books_Authored.AID = Author.AID;";
+                    "AND Book_And_Category.CategoryID = BookCategories.CategoryID AND Books_Authored.AID = Author.AID;";*/
 
 
                 // Open the connection and execute the command
@@ -197,4 +201,3 @@ namespace StoneWoodBooks
             }
         }
     }
-}
