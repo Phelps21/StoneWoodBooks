@@ -32,6 +32,7 @@ namespace StoneWoodBooks
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Fill the txtboxes on loadup
                     txtEmail.Text = reader["Email1"].ToString();
                     txtAltEmail.Text = reader["Email2"].ToString();
                     txtPhone.Text = reader["Phone"].ToString();
@@ -182,6 +183,7 @@ namespace StoneWoodBooks
                 }
 
                 // This happens if the customer tries switching the main email with the alt
+                // If this happens, delete the users emails and re-enter them
                 catch (SqlException)
                 {
                     cmd.CommandText = "Delete From CustomerEmail Where Username = '" + un + "';";
@@ -200,7 +202,7 @@ namespace StoneWoodBooks
                 cmd.CommandText = "Update CustomerPhone set Phone = " + txtPhone.Text + " where Username = '" + un + "';";
                 cmd.ExecuteNonQuery();
 
-                // I was just didnt want to make any more textboxes
+                // I just didnt want to make an extra box for street number, so this combines both the number and the address name
                 Regex r = new Regex(@"(?<number>\d+)?\s*(?<street>[^\d]+)\s*(?<number>\d+)?$");
                 Match m = r.Match(txtStreet.Text);
                 string number = m.Groups["number"].Value;

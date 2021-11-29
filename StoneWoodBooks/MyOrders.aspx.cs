@@ -48,6 +48,7 @@ namespace StoneWoodBooks
                     tblOrders.Rows.Add(tr);
                 }
 
+                // Add a button that lets you see the individual order
                 foreach (TableRow tr in tblOrders.Rows)
                 {
                     if (tr == tblOrders.Rows[0])
@@ -72,6 +73,7 @@ namespace StoneWoodBooks
                 Response.Redirect("Default.aspx");
         }
 
+        // Redirect the user to a specific order
         protected void btnView_Click(Object sender, EventArgs e, int row)
         {
             Button btnSent = sender as Button;

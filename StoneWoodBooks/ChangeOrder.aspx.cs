@@ -58,7 +58,7 @@ namespace StoneWoodBooks
                 }
                 reader.Close();
 
-
+                // Add a button to every row that allows removal of an item
                 foreach (TableRow tr in tblOrders.Rows)
                 {
                     if (tr == tblOrders.Rows[row])
@@ -86,7 +86,8 @@ namespace StoneWoodBooks
             conn.Close();
         }
 
-
+        // This allows deletion of an item from an order and updates the ordervalue.
+        // If the ordervalue is 0 then delete then order and redirect the user to the MyOrders page
         protected void btnRemove_Click(object sender, EventArgs e, string ItemNumber, string OrderID)
         {
             conn.Open();
@@ -108,7 +109,6 @@ namespace StoneWoodBooks
                 conn.Close();
                 Response.Redirect("ChangeOrder.aspx");
             }
-
 
             else
             {
