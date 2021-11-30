@@ -24,7 +24,7 @@ namespace StoneWoodBooks
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             cmd.Connection = conn;
 
-            cmd.CommandText = "Select * From Orders Where Username = '" + /*Cache.Get("Username")*/"wesleyphelps" + "';";
+            cmd.CommandText = "Select * From Orders Where Username = '" +Cache.Get("Username")+ "';";
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
@@ -94,7 +94,7 @@ namespace StoneWoodBooks
                 "MAX(BookCategories.CategoryDescription) as CategoryDescription, Max(OrderItem.ISBN) as ISBN FROM Books, Author, Books_Authored, " +
                 "BookCategories, OrderItem, Book_And_Category WHERE Books_Authored.ISBN = OrderItem.ISBN " +
                 "AND Author.AID = Books_Authored.AID AND BookCategories.CategoryID = Book_And_Category.CategoryID " +
-                "AND Books.ISBN = OrderItem.ISBN AND OrderItem.Username = '" + /*Cache.Get("Username")*/"wesleyphelps" + "' " +
+                "AND Books.ISBN = OrderItem.ISBN AND OrderItem.Username = '" +Cache.Get("Username")+ "' " +
                 "AND OrderItem.OrderID = " + tblOrders.Rows[row].Cells[0].Text + " group by OrderItem.ItemNumber;";
 
             conn.Open();
