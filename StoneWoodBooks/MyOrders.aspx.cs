@@ -17,7 +17,9 @@ namespace StoneWoodBooks
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             cmd.Connection = conn;
 
+
             cmd.CommandText = "Select * From Orders Where Username = '" + Cache.Get("Username") + "';";
+
 
             // Open the connection and execute the command
             // store the returned data in a SqlDataReader object
@@ -77,8 +79,10 @@ namespace StoneWoodBooks
         protected void btnView_Click(Object sender, EventArgs e, int row)
         {
             Button btnSent = sender as Button;
+
             Cache.Insert("OrderID", tblOrders.Rows[row].Cells[0].Text);
             Response.Redirect("ChangeOrder.aspx");
+
         }
     }
 }

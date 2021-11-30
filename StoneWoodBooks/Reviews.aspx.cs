@@ -13,11 +13,13 @@ namespace StoneWoodBooks
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            String Isbn = (String)Cache.Get("ISBN");
+            int isbn = Int32.Parse(Isbn);
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "SELECT * FROM BookReviews";
+            cmd.CommandText = "SELECT * FROM BookReviews WHERE ISBN = "+isbn+";";
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
