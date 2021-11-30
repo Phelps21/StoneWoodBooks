@@ -59,6 +59,7 @@
                         <li><a runat="server" href="~/MyAccount">My Account</a></li>
                         <li><a runat="server" href="~/MyOrders">My Orders</a></li>
                         <li ><a runat="server" href="~/MyCart" class="glyphicon glyphicon-shopping-cart"></a></li>
+                        <li><asp:Button runat="server" CssClass="btn btn-primary" OnClick="logOut" text="Log Out" style="margin-top: 8px;"/></li>
                         <asp:Label ID="lblUser" runat="server"></asp:Label>
                     </ul>
                 </div>
