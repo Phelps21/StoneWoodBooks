@@ -35,7 +35,7 @@ namespace StoneWoodBooks
             if (reader.HasRows)
             {
                 int row = 0;
-                // Build the table 
+                // Build the table dynamically
                 while (reader.Read())
                 {
                     TableRow tr = new TableRow();
@@ -63,6 +63,7 @@ namespace StoneWoodBooks
                     tblBooks.Rows.Add(tr);
                 }
 
+                // For each row in the table add a button that lets you remove items
                 foreach (TableRow tr in tblBooks.Rows)
                 {
                     if (tr == tblBooks.Rows[0])
@@ -98,6 +99,7 @@ namespace StoneWoodBooks
             string formattedtime = rn.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
             conn.Open();
+            // Make a new row in Orders for the incoming items
             cmd.CommandText = "Insert into Orders(OrderDate, OrderValue, Username)" +
                 "Values ('" + formattedtime + "', " + total + ", '" + Cache.Get("Username") + "');";
             cmd.ExecuteNonQuery();
@@ -113,6 +115,7 @@ namespace StoneWoodBooks
             Response.Redirect("MyCart.aspx");
         }
 
+        // Remove items from the table
         protected void btnRemove_Click(object sender, EventArgs e, int row)
         {
             string isbn = tblBooks.Rows[row].Cells[4].Text;

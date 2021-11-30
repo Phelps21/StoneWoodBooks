@@ -113,6 +113,7 @@
     <Content Include="AuthorsTable.aspx" />
     <Content Include="Books.aspx" />
     <Content Include="BooksTable.aspx" />
+    <Content Include="ChangeOrder.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -230,6 +231,13 @@
     </Compile>
     <Compile Include="BooksTable.aspx.designer.cs">
       <DependentUpon>BooksTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeOrder.aspx.cs">
+      <DependentUpon>ChangeOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeOrder.aspx.designer.cs">
+      <DependentUpon>ChangeOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
