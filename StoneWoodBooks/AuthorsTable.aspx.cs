@@ -111,7 +111,7 @@ namespace StoneWoodBooks
                     }
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Sorry, something went wrong.')", true);
             }
@@ -158,7 +158,7 @@ namespace StoneWoodBooks
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Sorry, something went wrong.')", true);
             }

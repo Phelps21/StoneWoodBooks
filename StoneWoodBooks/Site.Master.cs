@@ -13,5 +13,11 @@ namespace StoneWoodBooks
         {
 
         }
+
+        protected void logOut(object sender, EventArgs e)
+        {
+            Cache.Remove("Username");
+            Response.Redirect("Login.aspx");
+        }
     }
 }

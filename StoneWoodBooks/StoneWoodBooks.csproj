@@ -144,6 +144,7 @@
     <Content Include="MyAccount.aspx" />
     <Content Include="MyOrders.aspx" />
     <Content Include="OrdersTable.aspx" />
+    <Content Include="Reviews.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -188,6 +189,7 @@
     <Content Include="SQL\CustomerPhone.sql" />
     <Content Include="SQL\OrderItem.sql" />
     <Content Include="SQL\Orders.sql" />
+    <Content Include="SQL\Reviews.sql" />
     <Content Include="SQL\State.sql" />
     <Content Include="SQL\SuppliedBy.sql" />
     <Content Include="SQL\Supplier.sql" />
@@ -304,6 +306,13 @@
       <DependentUpon>OrdersTable.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reviews.aspx.cs">
+      <DependentUpon>Reviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reviews.aspx.designer.cs">
+      <DependentUpon>Reviews.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
