@@ -12,6 +12,14 @@
         <br />
         <br />
         <div class="col-md-3">
+            Password:
+        </div>
+        <div class="col-md-9">
+            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" required="true"></asp:TextBox>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-3">
            Email:
         </div>
         <div class="col-md-9">
@@ -20,7 +28,7 @@
         <br />
         <br />
         <div class="col-md-3">
-           Alternate Email:
+           Alternate Email <strong>(Unique)</strong>:
         </div>
         <div class="col-md-9">
             <asp:TextBox ID="txtAlternateEmail" runat="server" CssClass="form-control"></asp:TextBox>
@@ -52,10 +60,26 @@
         <br />
         <br />
         <div class="col-md-3">
-            Street Address:
+            Alternate Phone <strong>(Unique)</strong>:
         </div>
         <div class="col-md-9">
-            <asp:TextBox ID="txtUserStreetAddress" runat="server" CssClass="form-control" required ="true"></asp:TextBox>
+            <asp:TextBox ID="txtAlternatePhone" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-3">
+            Street Number:
+        </div>
+        <div class="col-md-9">
+            <asp:TextBox ID="txtStreetNum" runat="server" CssClass="form-control" required ="true"></asp:TextBox>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-3">
+            Street Name:
+        </div>
+        <div class="col-md-9">
+            <asp:TextBox ID="txtUserStreetName" runat="server" CssClass="form-control" required ="true"></asp:TextBox>
         </div>
         <br />
         <br />
@@ -71,7 +95,8 @@
             State:
         </div>
         <div class="col-md-9">
-            <asp:DropDownList ID="ddlUserState" runat="server" CssClass="form-control" ></asp:DropDownList>
+            <asp:DropDownList ID="ddlUserState" runat="server" CssClass="form-control" DataSourceID="DBState" DataTextField="StateID" DataValueField="StateID" ></asp:DropDownList>
+            <asp:SqlDataSource ID="DBState" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT [StateID] FROM [State]"></asp:SqlDataSource>
         </div>
         <br />
         <br />

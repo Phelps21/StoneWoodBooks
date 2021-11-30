@@ -6,7 +6,7 @@
     <h3>Customer Table</h3>
     <asp:Table ID="tblCustomer" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
-            <asp:TableHeaderCell>UserName</asp:TableHeaderCell>
+            <asp:TableHeaderCell>Username</asp:TableHeaderCell>
             <asp:TableHeaderCell>Password</asp:TableHeaderCell>
             <asp:TableHeaderCell>Fname</asp:TableHeaderCell>
             <asp:TableHeaderCell>Lname</asp:TableHeaderCell>
@@ -21,7 +21,7 @@
     <h3>Customer Phone Table</h3>
     <asp:Table ID="tblCustomerPhone" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
-            <asp:TableHeaderCell>UserName</asp:TableHeaderCell>
+            <asp:TableHeaderCell>Username</asp:TableHeaderCell>
             <asp:TableHeaderCell>Phone</asp:TableHeaderCell>
         </asp:TableHeaderRow>
     </asp:Table>
@@ -34,7 +34,7 @@
     <h3>Customer Email Table</h3>
     <asp:Table ID="tblCustomerEmail" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
-            <asp:TableHeaderCell>UserName</asp:TableHeaderCell>
+            <asp:TableHeaderCell>Username</asp:TableHeaderCell>
             <asp:TableHeaderCell>Email</asp:TableHeaderCell>
         </asp:TableHeaderRow>
     </asp:Table>
@@ -47,7 +47,7 @@
     <h3>Customer Address Table</h3>
     <asp:Table ID="tblCustomerAddress" runat="server" CssClass="table table-stripe">
         <asp:TableHeaderRow>
-            <asp:TableHeaderCell>UserName</asp:TableHeaderCell>
+            <asp:TableHeaderCell>Username</asp:TableHeaderCell>
             <asp:TableHeaderCell>StreetNum</asp:TableHeaderCell>
             <asp:TableHeaderCell>StreetName</asp:TableHeaderCell>
             <asp:TableHeaderCell>City</asp:TableHeaderCell>
