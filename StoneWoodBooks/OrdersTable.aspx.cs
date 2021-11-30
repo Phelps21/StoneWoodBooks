@@ -13,6 +13,8 @@ namespace StoneWoodBooks
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            while (tblOrders.Rows.Count > 1)
+                tblOrders.Rows.RemoveAt(1);
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = WebConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             SqlCommand cmd = new SqlCommand();
@@ -49,7 +51,8 @@ namespace StoneWoodBooks
 
         protected void btnQueryOrders_Click(object sender, EventArgs e)
         {
-            if(txtOrders.Text.Equals(""))
+            
+            if (txtOrders.Text.Equals(""))
             {
                 Page_Load(sender, e);
             }
@@ -60,6 +63,8 @@ namespace StoneWoodBooks
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = txtOrders.Text;
+                while (tblOrders.Rows.Count > 1)
+                    tblOrders.Rows.RemoveAt(1);
                 try
                 {
                     conn.Open();
